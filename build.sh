@@ -23,12 +23,17 @@ cd "${CODEBASE_LOCATION}" || { logErrorMessage "Failed to change directory to $C
 
 #######################################################
 
-echo "$POST_HOOK_CMD" | while IFS= read -r cmd; do
-  if [ -n "$cmd" ]; then
-    logInfoMessage "Running: $cmd"
-    eval "$cmd" || logErrorMessage " Command failed: $cmd (continuing...)"
-  fi
-done
+if [ -z "$POST_HOOK_CMD" ]; then
+    logInfoMessage "No post-hook commands found."
+else
+    echo "$POST_HOOK_CMD" | while IFS= read -r cmd; do
+        if [ -n "$cmd" ]; then
+            logInfoMessage "Running: $cmd"
+            eval "$cmd" || logErrorMessage "Command failed: $cmd (continuing...)"
+        fi
+    done
+fi
+
 
 TASK_STATUS=$?
 saveTaskStatus ${TASK_STATUS} ${ACTIVITY_SUB_TASK_CODE}
