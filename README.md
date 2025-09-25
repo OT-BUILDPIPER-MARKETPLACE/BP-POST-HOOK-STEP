@@ -1,4 +1,3 @@
----
 
 # BuildPiper Post-Hook Docker Image
 
