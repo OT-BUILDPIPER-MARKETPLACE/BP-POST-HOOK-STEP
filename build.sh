@@ -17,17 +17,17 @@ fi
 
 case "$ACTION" in
   build)
-    PRE_HOOK_CMD=$(getPostHookBuildCommand)
+    POST_HOOK_CMD=$(getPostHookBuildCommand)
     ;;
   deploy)
-    PRE_HOOK_CMD=$(getPostHookDeployCommand)
+    POST_HOOK_CMD=$(getPostHookDeployCommand)
     ;;
   *)
     logInfoMessage "Usage: {build|deploy}"
     ;;
 esac
 
-logInfoMessage "PRE_HOOK_CMD is: $PRE_HOOK_CMD"
+logInfoMessage "POST_HOOK_CMD is: $POST_HOOK_CMD"
 
 CODEBASE_LOCATION="${WORKSPACE}"/"${CODEBASE_DIR}"
 logInfoMessage "I'll $INSTRUCTION_TYPE the code available at [$CODEBASE_LOCATION]"
