@@ -54,7 +54,7 @@ docker run --rm -it \
 ---
 
 > ⚠️ **Note:**
-> If running locally, you need to set `ACTION` manually and set the `POST_HOOK_CMD` value . When running from BuildPiper (BP), this value is set in select variable and the command automatically reads it from the environment.
+> If running locally, you need to set `POST_HOOK_CMD` manually . When running from BuildPiper (BP), this value is set in select variable and the command automatically reads it from the environment.
 > Additionally, when running from BuildPiper (BP) a pre-hook for a build, the `ACTION` value should be set to `build`, and for a deploy, it should be set to `deploy`.
 
 ---
