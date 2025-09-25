@@ -33,28 +33,29 @@ docker run --rm -it \
   -e DEBUG=true \
   -e WORKSPACE=/bp/workspace \
   -e CODEBASE_DIR=Example \
-  -e INSTRUCTION_TYPE=npm run posthook \
+  -e POST_HOOK_CMD=npm build \
   -v $(pwd):/bp/workspace \
-  registry.buildpiper.in/impl/post-hooks:nr_v0.1
+  registry.buildpiper.in/impl/pre-hooks:nr_v0.1
 ```
 
 ---
 
 ## Environment Variables
 
-| Variable           | Description                                                       |
-| ------------------ | ----------------------------------------------------------------- |
-| `DEBUG`            | Enable debug logs (`true` / `false`).                             |
-| `WORKSPACE`        | Workspace directory inside container (default: `/bp/workspace`).  |
-| `CODEBASE_DIR`     | Subdirectory inside workspace that contains the code.             |
-| `INSTRUCTION_TYPE` | Action being performed (e.g., `posthook`, `cleanup`, `finalize`). |
-| `SLEEP_DURATION`   | Sleep duration before execution (default: `5s`).                  |
+| Variable                 | Description                                                      |
+| ------------------------ | ---------------------------------------------------------------- |
+| `DEBUG`                  | Enable debug logs (`true` / `false`).                            |
+| `WORKSPACE`              | Workspace directory inside container (default: `/bp/workspace`). |
+| `CODEBASE_DIR`           | Subdirectory inside workspace that contains the code.            |
+| `ACTION`                | Action being performed (`build`, `deploy`).              |
+| `SLEEP_DURATION`         | Sleep duration before execution (default: `5s`).                 |
+| `POST_HOOK_CMD`         | Set the value if run locally .                 |
 
 ---
 
 > ⚠️ **Note:**
-> If you run locally, you need to mention the value of `INSTRUCTION_TYPE` manually.
-> But when running from BuildPiper (BP), this value will be automatically read from the `environment_build` file.
+> If running locally, you need to set `ACTION` manually and set the `POST_HOOK_CMD` value . When running from BuildPiper (BP), this value is set in select variable and the command automatically reads it from the environment.
+> Additionally, when running from BuildPiper (BP) a pre-hook for a build, the `ACTION` value should be set to `build`, and for a deploy, it should be set to `deploy`.
 
 ---
 
@@ -104,9 +105,9 @@ docker run --rm -it \
      -e DEBUG=true \
      -e WORKSPACE=/bp/workspace \
      -e CODEBASE_DIR=my-service \
-     -e INSTRUCTION_TYPE=posthook \
+     -e POST_HOOK_CMD=build \
      -v $(pwd):/bp/workspace \
-     registry.buildpiper.in/impl/post-hooks:nr_v0.1
+     registry.buildpiper.in/impl/pre-hooks:nr_v0.1
    ```
 
 ---
