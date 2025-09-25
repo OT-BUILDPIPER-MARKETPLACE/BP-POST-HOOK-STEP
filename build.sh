@@ -11,9 +11,23 @@ source /opt/buildpiper/shell-functions/aws-functions.sh
 if [ "$DEBUG" = true ]; then
   set -x
 fi
+if [ "$DEBUG" = true ]; then
+  set -x
+fi
 
-export POST_HOOK_CMD=$(getPostHookCommand)
+case "$ACTION" in
+  build)
+    PRE_HOOK_CMD=$(getPostHookBuildCommand)
+    ;;
+  deploy)
+    PRE_HOOK_CMD=$(getPostHookDeployCommand)
+    ;;
+  *)
+    logInfoMessage "Usage: {build|deploy}"
+    ;;
+esac
 
+logInfoMessage "PRE_HOOK_CMD is: $PRE_HOOK_CMD"
 
 CODEBASE_LOCATION="${WORKSPACE}"/"${CODEBASE_DIR}"
 logInfoMessage "I'll $INSTRUCTION_TYPE the code available at [$CODEBASE_LOCATION]"
