@@ -1,4 +1,4 @@
-FROM aayush808/base-image-all-package-ub:0.2
+FROM registry.buildpiper.in/impl/generic-base-image:v0.1
 
 RUN groupadd -g 65522 buildpiper && \
     useradd -u 65522 -g buildpiper -d /home/buildpiper -m buildpiper && \
