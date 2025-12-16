@@ -11,9 +11,6 @@ source /opt/buildpiper/shell-functions/aws-functions.sh
 if [ "$DEBUG" = true ]; then
   set -x
 fi
-if [ "$DEBUG" = true ]; then
-  set -x
-fi
 
 case "$ACTION" in
   build)
