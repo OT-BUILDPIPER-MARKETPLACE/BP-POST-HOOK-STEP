@@ -15,9 +15,11 @@ fi
 case "$ACTION" in
   build)
     POST_HOOK_CMD=$(getPostHookBuildCommand)
+    logInfoMessage "Selected action: $ACTION"
     ;;
   deploy)
     POST_HOOK_CMD=$(getPostHookDeployCommand)
+    logInfoMessage "Selected action: $ACTION"
     ;;
   *)
     logInfoMessage "Usage: {build|deploy}"
@@ -73,6 +75,3 @@ echo "$POST_HOOK_CMD" | while IFS= read -r cmd; do
   done
   saveTaskStatus "${TASK_STATUS}" "${ACTIVITY_SUB_TASK_CODE}"
 done
-
-
-
