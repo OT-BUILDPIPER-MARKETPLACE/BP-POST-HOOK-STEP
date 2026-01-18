@@ -26,6 +26,10 @@ case "$ACTION" in
     ;;
 esac
 
+if [ -z "$PRE_HOOK_CMD" ]; then
+  logInfoMessage "No PRE_HOOKS found"
+  exit 1
+fi
 
 MASKED_CMD="$POST_HOOK_CMD"
 MASKED_CMD=$(echo "$MASKED_CMD" | sed -E 's/(AWS|DB|TOKEN|PASSWORD|PASS|SECRET|KEY|CRED|AUTH|PRIVATE|FERNET|ACCESS|SESSION)=([^ ]+)/\1=****/Ig')
