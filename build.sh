@@ -26,7 +26,7 @@ case "$ACTION" in
     ;;
 esac
 
-if [ -z "$PRE_HOOK_CMD" ]; then
+if [ -z "$POST_HOOK_CMD" ]; then
   logInfoMessage "No PRE_HOOKS found"
   exit 0
 fi
