@@ -41,12 +41,12 @@ function getPostHookDeployCommand() {
 }
 
 function getPreHookNMSBuildCommand() {
-    PRE_HOOK_CMD=$(jq -r ‘.other_build_details.pre_hook[] | select(.method == “Prehook Command”) | .command’ /bp/data/non_ms_build)
+    PRE_HOOK_CMD=$(jq -r '.other_build_details.pre_hook[] | select(.method == "Prehook Command") | .command' /bp/data/non_ms_build)
     echo “$PRE_HOOK_CMD”
 }
 
 function getPostHookNMSBuildCommand() {
-    POST_HOOK_CMD=$(jq -r ‘.other_build_details.post_hook[] | select(.method == “Posthook Command”) | .command’ /bp/data/non_ms_build)
+    POST_HOOK_CMD=$(jq -r '.other_build_details.post_hook[] | select(.method == "Posthook Command") | .command' /bp/data/non_ms_build)
     echo “$POST_HOOK_CMD”
 }
 
