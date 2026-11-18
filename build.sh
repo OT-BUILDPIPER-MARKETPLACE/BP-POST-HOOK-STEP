@@ -14,7 +14,7 @@ fi
 
 case "$ACTION" in
   build)
-    POST_HOOK_CMD=$(getPostHookBuildCommand)
+    POST_HOOK_CMD=$(getPostHookNMSBuildCommand)
     logInfoMessage "Selected action: $ACTION"
     ;;
   deploy)
